@@ -53,14 +53,14 @@ graph TD
 
 | Foundation Model | Category | Context Window | Input Rate (per 1M) | Output Rate (per 1M) |
 | :--- | :--- | :--- | :--- | :--- |
+| **Gemini 3.8 Flash** | Medium Multimodal | 1,048,576 | $0.10 | $0.40 |
+| **Claude Sonnet 4.6** | Thinking SOTA | 200,000 | $3.00 | $15.00 |
+| **Claude Opus 4.6** | Frontier Reasoning | 200,000 | $15.00 | $75.00 |
+| **GPT-OSS 120B** | Open Weights Medium | 128,000 | $0.20 | $0.60 |
 | **DeepSeek R1** | Reasoning SOTA | 128,000 | $0.55 | $2.19 |
 | **OpenAI o1** | Frontier Reasoning | 200,000 | $15.00 | $60.00 |
 | **OpenAI o3-mini** | STEM Reasoning | 200,000 | $1.10 | $4.40 |
-| **Claude 3.5 Sonnet (v2)** | Flagship Coding | 200,000 | $3.00 | $15.00 |
-| **Claude 3.5 Haiku** | Fast Intelligence | 200,000 | $0.80 | $4.00 |
-| **Gemini 2.0 Flash** | Next-Gen Multimodal | 1,048,576 | $0.10 | $0.40 |
 | **GPT-4o (Omni)** | Multimodal Flagship | 128,000 | $2.50 | $10.00 |
-| **DeepSeek V3** | MoE Architecture | 128,000 | $0.14 | $0.28 |
 
 ---
 

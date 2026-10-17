@@ -6,8 +6,40 @@
 (function () {
   'use strict';
 
-  // Model Catalog & Live Pricing Rates (per 1,000,000 tokens) - Latest 2025/2026 Models
+  // Model Catalog & Live Pricing Rates (per 1,000,000 tokens)
   const MODEL_CATALOG = {
+    'gemini-3-8-flash': {
+      name: 'Gemini 3.8 Flash (Medium)',
+      shortName: 'Gemini 3.8 Flash',
+      inputRate: 0.10,
+      outputRate: 0.40,
+      contextLimit: 1048576,
+      badge: 'Flash Multimodal'
+    },
+    'claude-sonnet-4-6': {
+      name: 'Claude Sonnet 4.6 (Thinking)',
+      shortName: 'Claude Sonnet 4.6',
+      inputRate: 3.00,
+      outputRate: 15.00,
+      contextLimit: 200000,
+      badge: 'Thinking SOTA'
+    },
+    'claude-opus-4-6': {
+      name: 'Claude Opus 4.6 (Thinking)',
+      shortName: 'Claude Opus 4.6',
+      inputRate: 15.00,
+      outputRate: 75.00,
+      contextLimit: 200000,
+      badge: 'Frontier Reasoning'
+    },
+    'gpt-oss-120b': {
+      name: 'GPT-OSS 120B (Medium)',
+      shortName: 'GPT-OSS 120B',
+      inputRate: 0.20,
+      outputRate: 0.60,
+      contextLimit: 128000,
+      badge: 'Open Weights'
+    },
     'deepseek-r1': {
       name: 'DeepSeek R1 (Reasoning)',
       shortName: 'DeepSeek R1',
@@ -32,30 +64,6 @@
       contextLimit: 200000,
       badge: 'Fast Reasoning'
     },
-    'claude-3-5-sonnet': {
-      name: 'Claude 3.5 Sonnet (v2)',
-      shortName: 'Claude 3.5 Sonnet',
-      inputRate: 3.00,
-      outputRate: 15.00,
-      contextLimit: 200000,
-      badge: 'Top Coding'
-    },
-    'claude-3-5-haiku': {
-      name: 'Claude 3.5 Haiku',
-      shortName: 'Claude 3.5 Haiku',
-      inputRate: 0.80,
-      outputRate: 4.00,
-      contextLimit: 200000,
-      badge: 'Ultra Fast'
-    },
-    'gemini-2-flash': {
-      name: 'Gemini 2.0 Flash',
-      shortName: 'Gemini 2.0 Flash',
-      inputRate: 0.10,
-      outputRate: 0.40,
-      contextLimit: 1048576,
-      badge: 'Next-Gen 1M'
-    },
     'gpt-4o': {
       name: 'OpenAI GPT-4o (Omni)',
       shortName: 'GPT-4o',
@@ -63,14 +71,6 @@
       outputRate: 10.00,
       contextLimit: 128000,
       badge: 'Omni Flagship'
-    },
-    'deepseek-v3': {
-      name: 'DeepSeek V3 (MoE)',
-      shortName: 'DeepSeek V3',
-      inputRate: 0.14,
-      outputRate: 0.28,
-      contextLimit: 128000,
-      badge: 'MoE Value'
     }
   };
 
