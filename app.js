@@ -8,21 +8,38 @@
 
   // Model Catalog & Live Pricing Rates (per 1,000,000 tokens)
   const MODEL_CATALOG = {
+    // 🌟 Google Ecosystem
     'gemini-3-8-flash': {
       name: 'Gemini 3.8 Flash (Medium)',
       shortName: 'Gemini 3.8 Flash',
       inputRate: 0.10,
       outputRate: 0.40,
       contextLimit: 1048576,
-      badge: 'Flash Multimodal'
+      badge: 'Flash Multimodal',
+      category: 'google',
+      isThinking: false
     },
+    'gemini-3-8-pro': {
+      name: 'Gemini 3.8 Pro (Extended)',
+      shortName: 'Gemini 3.8 Pro',
+      inputRate: 1.25,
+      outputRate: 5.00,
+      contextLimit: 2097152,
+      badge: '2M Context SOTA',
+      category: 'google',
+      isThinking: true
+    },
+
+    // 🧠 Anthropic Thinking Ecosystem
     'claude-sonnet-4-6': {
       name: 'Claude Sonnet 4.6 (Thinking)',
       shortName: 'Claude Sonnet 4.6',
       inputRate: 3.00,
       outputRate: 15.00,
       contextLimit: 200000,
-      badge: 'Thinking SOTA'
+      badge: 'Thinking SOTA',
+      category: 'anthropic',
+      isThinking: true
     },
     'claude-opus-4-6': {
       name: 'Claude Opus 4.6 (Thinking)',
@@ -30,31 +47,31 @@
       inputRate: 15.00,
       outputRate: 75.00,
       contextLimit: 200000,
-      badge: 'Frontier Reasoning'
+      badge: 'Frontier Reasoning',
+      category: 'anthropic',
+      isThinking: true
     },
-    'gpt-oss-120b': {
-      name: 'GPT-OSS 120B (Medium)',
-      shortName: 'GPT-OSS 120B',
-      inputRate: 0.20,
-      outputRate: 0.60,
-      contextLimit: 128000,
-      badge: 'Open Weights'
-    },
-    'deepseek-r1': {
-      name: 'DeepSeek R1 (Reasoning)',
-      shortName: 'DeepSeek R1',
-      inputRate: 0.55,
-      outputRate: 2.19,
-      contextLimit: 128000,
-      badge: 'Reasoning SOTA'
-    },
-    'o1': {
-      name: 'OpenAI o1 (Frontier Reasoning)',
-      shortName: 'OpenAI o1',
-      inputRate: 15.00,
-      outputRate: 60.00,
+    'claude-haiku-4-6': {
+      name: 'Claude Haiku 4.6 (Fast Tier)',
+      shortName: 'Claude Haiku 4.6',
+      inputRate: 0.80,
+      outputRate: 4.00,
       contextLimit: 200000,
-      badge: 'Frontier SOTA'
+      badge: 'Fast Intelligence',
+      category: 'anthropic',
+      isThinking: false
+    },
+
+    // ⚡ OpenAI & GPT-OSS Ecosystem
+    'o3': {
+      name: 'OpenAI o3 (Reasoning Flagship)',
+      shortName: 'OpenAI o3',
+      inputRate: 10.00,
+      outputRate: 40.00,
+      contextLimit: 200000,
+      badge: 'CoT Flagship',
+      category: 'openai',
+      isThinking: true
     },
     'o3-mini': {
       name: 'OpenAI o3-mini (STEM Reasoning)',
@@ -62,7 +79,39 @@
       inputRate: 1.10,
       outputRate: 4.40,
       contextLimit: 200000,
-      badge: 'Fast Reasoning'
+      badge: 'Fast Reasoning',
+      category: 'openai',
+      isThinking: true
+    },
+    'o1': {
+      name: 'OpenAI o1 (Frontier Reasoning)',
+      shortName: 'OpenAI o1',
+      inputRate: 15.00,
+      outputRate: 60.00,
+      contextLimit: 200000,
+      badge: 'Frontier Reasoning',
+      category: 'openai',
+      isThinking: true
+    },
+    'gpt-oss-120b': {
+      name: 'GPT-OSS 120B (Medium MoE)',
+      shortName: 'GPT-OSS 120B',
+      inputRate: 0.20,
+      outputRate: 0.60,
+      contextLimit: 128000,
+      badge: 'Open Weights MoE',
+      category: 'openai',
+      isThinking: false
+    },
+    'gpt-oss-20b': {
+      name: 'GPT-OSS 20B (Local MoE)',
+      shortName: 'GPT-OSS 20B',
+      inputRate: 0.08,
+      outputRate: 0.24,
+      contextLimit: 128000,
+      badge: 'Single GPU MoE',
+      category: 'openai',
+      isThinking: false
     },
     'gpt-4o': {
       name: 'OpenAI GPT-4o (Omni)',
@@ -70,7 +119,31 @@
       inputRate: 2.50,
       outputRate: 10.00,
       contextLimit: 128000,
-      badge: 'Omni Flagship'
+      badge: 'Omni Flagship',
+      category: 'openai',
+      isThinking: false
+    },
+
+    // 🚀 DeepSeek Open Weights
+    'deepseek-r1': {
+      name: 'DeepSeek R1 (Reasoning)',
+      shortName: 'DeepSeek R1',
+      inputRate: 0.55,
+      outputRate: 2.19,
+      contextLimit: 128000,
+      badge: 'Reasoning SOTA',
+      category: 'deepseek',
+      isThinking: true
+    },
+    'deepseek-v3': {
+      name: 'DeepSeek V3 (MoE Value)',
+      shortName: 'DeepSeek V3',
+      inputRate: 0.14,
+      outputRate: 0.28,
+      contextLimit: 128000,
+      badge: 'MoE Value King',
+      category: 'deepseek',
+      isThinking: false
     }
   };
 
@@ -175,6 +248,7 @@ Shipping Address: 400 Silicon Parkway, Suite 800, Austin, TX 78701`,
   let optimizedPromptText = '';
   let activeTab = 'editor';
   let simulatedVolume = 100000;
+  let activeCategoryFilter = 'all';
 
   // BPE Subword Tokenizer Simulation Engine
   // Approximates GPT-4/o200k/cl100k tokenizer regex & subword boundaries
@@ -355,6 +429,11 @@ Shipping Address: 400 Silicon Parkway, Suite 800, Austin, TX 78701`,
 
     Object.keys(MODEL_CATALOG).forEach(key => {
       const m = MODEL_CATALOG[key];
+
+      // Category filtering
+      if (activeCategoryFilter === 'thinking' && !m.isThinking) return;
+      if (activeCategoryFilter !== 'all' && activeCategoryFilter !== 'thinking' && m.category !== activeCategoryFilter) return;
+
       const costPerCall = (tokenCount / 1000000) * m.inputRate;
       const costPerVol = costPerCall * volume;
       const isSelected = key === selectedKey;
@@ -510,6 +589,16 @@ Shipping Address: 400 Silicon Parkway, Suite 800, Austin, TX 78701`,
       setTimeout(() => {
         btnCopyAudit.textContent = 'Copy Markdown';
       }, 1800);
+    });
+  });
+
+  // Category Filter Pills Listener
+  document.querySelectorAll('.filter-pill').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeCategoryFilter = btn.getAttribute('data-filter') || 'all';
+      updateAll();
     });
   });
 

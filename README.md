@@ -51,16 +51,21 @@ graph TD
 
 ## 🏷️ Multi-Model Pricing Comparison
 
-| Foundation Model | Category | Context Window | Input Rate (per 1M) | Output Rate (per 1M) |
-| :--- | :--- | :--- | :--- | :--- |
-| **Gemini 3.8 Flash** | Medium Multimodal | 1,048,576 | $0.10 | $0.40 |
-| **Claude Sonnet 4.6** | Thinking SOTA | 200,000 | $3.00 | $15.00 |
-| **Claude Opus 4.6** | Frontier Reasoning | 200,000 | $15.00 | $75.00 |
-| **GPT-OSS 120B** | Open Weights Medium | 128,000 | $0.20 | $0.60 |
-| **DeepSeek R1** | Reasoning SOTA | 128,000 | $0.55 | $2.19 |
-| **OpenAI o1** | Frontier Reasoning | 200,000 | $15.00 | $60.00 |
-| **OpenAI o3-mini** | STEM Reasoning | 200,000 | $1.10 | $4.40 |
-| **GPT-4o (Omni)** | Multimodal Flagship | 128,000 | $2.50 | $10.00 |
+| Foundation Model | Ecosystem | Category | Context Window | Input Rate (per 1M) | Output Rate (per 1M) |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Gemini 3.8 Flash** | Google | High-Velocity Multimodal | 1,048,576 | $0.10 | $0.40 |
+| **Gemini 3.8 Pro** | Google | Extended 2M Reasoning | 2,097,152 | $1.25 | $5.00 |
+| **Claude Sonnet 4.6** | Anthropic | Thinking & Coding SOTA | 200,000 | $3.00 | $15.00 |
+| **Claude Opus 4.6** | Anthropic | Frontier Deep Reasoning | 200,000 | $15.00 | $75.00 |
+| **Claude Haiku 4.6** | Anthropic | Fast Tier Intelligence | 200,000 | $0.80 | $4.00 |
+| **OpenAI o3** | OpenAI | Flagship CoT Reasoning | 200,000 | $10.00 | $40.00 |
+| **OpenAI o3-mini** | OpenAI | Fast STEM Reasoning | 200,000 | $1.10 | $4.40 |
+| **OpenAI o1** | OpenAI | Frontier Reasoning | 200,000 | $15.00 | $60.00 |
+| **GPT-OSS 120B** | OpenAI / OSS | Open Weights Medium MoE | 128,000 | $0.20 | $0.60 |
+| **GPT-OSS 20B** | OpenAI / OSS | Local Single-GPU MoE | 128,000 | $0.08 | $0.24 |
+| **GPT-4o (Omni)** | OpenAI | Multimodal Omni Flagship | 128,000 | $2.50 | $10.00 |
+| **DeepSeek R1** | DeepSeek | Open Reasoning SOTA | 128,000 | $0.55 | $2.19 |
+| **DeepSeek V3** | DeepSeek | MoE Architecture King | 128,000 | $0.14 | $0.28 |
 
 ---
 

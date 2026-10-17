@@ -625,6 +625,39 @@ body {
 /* ==========================================================================
    Sidebar: Multi-Model Cost Matrix & Context Bar
    ========================================================================== */
+.matrix-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  padding: 0.65rem 1.4rem;
+  background: rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid var(--border-card);
+}
+
+.filter-pill {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-card);
+  color: var(--text-muted);
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filter-pill:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-main);
+}
+
+.filter-pill.active {
+  background: rgba(0, 229, 255, 0.15);
+  border-color: rgba(0, 229, 255, 0.4);
+  color: var(--accent-cyan);
+}
+
 .cost-table-wrapper {
   overflow-x: auto;
 }
