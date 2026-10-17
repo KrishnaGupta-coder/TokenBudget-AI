@@ -6,55 +6,71 @@
 (function () {
   'use strict';
 
-  // Model Catalog & Live Pricing Rates (per 1,000,000 tokens)
+  // Model Catalog & Live Pricing Rates (per 1,000,000 tokens) - Latest 2025/2026 Models
   const MODEL_CATALOG = {
+    'deepseek-r1': {
+      name: 'DeepSeek R1 (Reasoning)',
+      shortName: 'DeepSeek R1',
+      inputRate: 0.55,
+      outputRate: 2.19,
+      contextLimit: 128000,
+      badge: 'Reasoning SOTA'
+    },
+    'o1': {
+      name: 'OpenAI o1 (Frontier Reasoning)',
+      shortName: 'OpenAI o1',
+      inputRate: 15.00,
+      outputRate: 60.00,
+      contextLimit: 200000,
+      badge: 'Frontier SOTA'
+    },
+    'o3-mini': {
+      name: 'OpenAI o3-mini (STEM Reasoning)',
+      shortName: 'o3-mini',
+      inputRate: 1.10,
+      outputRate: 4.40,
+      contextLimit: 200000,
+      badge: 'Fast Reasoning'
+    },
+    'claude-3-5-sonnet': {
+      name: 'Claude 3.5 Sonnet (v2)',
+      shortName: 'Claude 3.5 Sonnet',
+      inputRate: 3.00,
+      outputRate: 15.00,
+      contextLimit: 200000,
+      badge: 'Top Coding'
+    },
+    'claude-3-5-haiku': {
+      name: 'Claude 3.5 Haiku',
+      shortName: 'Claude 3.5 Haiku',
+      inputRate: 0.80,
+      outputRate: 4.00,
+      contextLimit: 200000,
+      badge: 'Ultra Fast'
+    },
+    'gemini-2-flash': {
+      name: 'Gemini 2.0 Flash',
+      shortName: 'Gemini 2.0 Flash',
+      inputRate: 0.10,
+      outputRate: 0.40,
+      contextLimit: 1048576,
+      badge: 'Next-Gen 1M'
+    },
     'gpt-4o': {
-      name: 'OpenAI GPT-4o',
+      name: 'OpenAI GPT-4o (Omni)',
       shortName: 'GPT-4o',
       inputRate: 2.50,
       outputRate: 10.00,
       contextLimit: 128000,
-      badge: 'Flagship'
-    },
-    'gpt-4o-mini': {
-      name: 'OpenAI GPT-4o-mini',
-      shortName: 'GPT-4o-mini',
-      inputRate: 0.15,
-      outputRate: 0.60,
-      contextLimit: 128000,
-      badge: 'Efficient'
-    },
-    'claude-3-5-sonnet': {
-      name: 'Claude 3.5 Sonnet',
-      shortName: 'Claude 3.5',
-      inputRate: 3.00,
-      outputRate: 15.00,
-      contextLimit: 200000,
-      badge: 'Top Reasoning'
-    },
-    'gemini-1-5-pro': {
-      name: 'Gemini 1.5 Pro',
-      shortName: 'Gemini 1.5 Pro',
-      inputRate: 1.25,
-      outputRate: 5.00,
-      contextLimit: 2000000,
-      badge: '2M Context'
-    },
-    'gemini-1-5-flash': {
-      name: 'Gemini 1.5 Flash',
-      shortName: 'Gemini Flash',
-      inputRate: 0.075,
-      outputRate: 0.30,
-      contextLimit: 1000000,
-      badge: 'Ultra Fast'
+      badge: 'Omni Flagship'
     },
     'deepseek-v3': {
-      name: 'DeepSeek V3',
+      name: 'DeepSeek V3 (MoE)',
       shortName: 'DeepSeek V3',
       inputRate: 0.14,
       outputRate: 0.28,
       contextLimit: 128000,
-      badge: 'Low Cost'
+      badge: 'MoE Value'
     }
   };
 

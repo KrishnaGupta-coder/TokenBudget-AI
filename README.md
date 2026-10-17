@@ -51,14 +51,16 @@ graph TD
 
 ## 🏷️ Multi-Model Pricing Comparison
 
-| Foundation Model | Provider | Context Window | Input Rate (per 1M) | Output Rate (per 1M) |
+| Foundation Model | Category | Context Window | Input Rate (per 1M) | Output Rate (per 1M) |
 | :--- | :--- | :--- | :--- | :--- |
-| **GPT-4o** | OpenAI | 128,000 | $2.50 | $10.00 |
-| **GPT-4o-mini** | OpenAI | 128,000 | $0.15 | $0.60 |
-| **Claude 3.5 Sonnet** | Anthropic | 200,000 | $3.00 | $15.00 |
-| **Gemini 1.5 Pro** | Google | 2,000,000 | $1.25 | $5.00 |
-| **Gemini 1.5 Flash** | Google | 1,000,000 | $0.075 | $0.30 |
-| **DeepSeek V3** | DeepSeek | 128,000 | $0.14 | $0.28 |
+| **DeepSeek R1** | Reasoning SOTA | 128,000 | $0.55 | $2.19 |
+| **OpenAI o1** | Frontier Reasoning | 200,000 | $15.00 | $60.00 |
+| **OpenAI o3-mini** | STEM Reasoning | 200,000 | $1.10 | $4.40 |
+| **Claude 3.5 Sonnet (v2)** | Flagship Coding | 200,000 | $3.00 | $15.00 |
+| **Claude 3.5 Haiku** | Fast Intelligence | 200,000 | $0.80 | $4.00 |
+| **Gemini 2.0 Flash** | Next-Gen Multimodal | 1,048,576 | $0.10 | $0.40 |
+| **GPT-4o (Omni)** | Multimodal Flagship | 128,000 | $2.50 | $10.00 |
+| **DeepSeek V3** | MoE Architecture | 128,000 | $0.14 | $0.28 |
 
 ---
 
