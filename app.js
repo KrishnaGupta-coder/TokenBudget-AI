@@ -6,143 +6,279 @@
 (function () {
   'use strict';
 
-  // Model Catalog & Live Pricing Rates (per 1,000,000 tokens)
+  // Model Catalog & Verified Live Pricing Rates (per 1,000,000 tokens — Late 2026)
   const MODEL_CATALOG = {
-    // 🌟 Google Ecosystem
-    'gemini-3-8-flash': {
-      name: 'Gemini 3.8 Flash (Medium)',
-      shortName: 'Gemini 3.8 Flash',
-      inputRate: 0.10,
-      outputRate: 0.40,
+    // 🌟 Google Gemini 4 & 3.x
+    'gemini-4-hydrogen': {
+      name: 'Gemini 4 Hydrogen',
+      shortName: 'Gemini 4 Hydrogen',
+      inputRate: 1.50,
+      cachedInputRate: 0.075,
+      outputRate: 7.50,
       contextLimit: 1048576,
-      badge: 'Flash Multimodal',
-      category: 'google',
-      isThinking: false
-    },
-    'gemini-3-8-pro': {
-      name: 'Gemini 3.8 Pro (Extended)',
-      shortName: 'Gemini 3.8 Pro',
-      inputRate: 1.25,
-      outputRate: 5.00,
-      contextLimit: 2097152,
-      badge: '2M Context SOTA',
+      badge: 'Speed/Reason',
       category: 'google',
       isThinking: true
     },
+    'gemini-4-carbon': {
+      name: 'Gemini 4 Carbon',
+      shortName: 'Gemini 4 Carbon',
+      inputRate: 3.00,
+      cachedInputRate: 0.15,
+      outputRate: 15.00,
+      contextLimit: 2097152,
+      badge: 'Flagship Reason',
+      category: 'google',
+      isThinking: true
+    },
+    'gemini-4-neon': {
+      name: 'Gemini 4 Neon',
+      shortName: 'Gemini 4 Neon',
+      inputRate: 3.00,
+      cachedInputRate: 0.15,
+      outputRate: 15.00,
+      contextLimit: 2097152,
+      badge: 'High Reasoning',
+      category: 'google',
+      isThinking: true
+    },
+    'gemini-3-8-flash': {
+      name: 'Gemini 3.8 Flash',
+      shortName: 'Gemini 3.8 Flash',
+      inputRate: 0.75,
+      cachedInputRate: 0.075,
+      outputRate: 3.75,
+      contextLimit: 1048576,
+      badge: 'Agentic Speed',
+      category: 'google',
+      isThinking: false
+    },
+    'gemini-3-5-flash-lite': {
+      name: 'Gemini 3.5 Flash-Lite',
+      shortName: 'Gemini 3.5 Lite',
+      inputRate: 0.25,
+      cachedInputRate: 0.025,
+      outputRate: 1.50,
+      contextLimit: 1048576,
+      badge: 'Flash-Lite',
+      category: 'google',
+      isThinking: false
+    },
 
-    // 🧠 Anthropic Thinking Ecosystem
+    // 🧠 Anthropic Claude 5.x & 4.6
+    'claude-sonnet-5-5': {
+      name: 'Claude Sonnet 5.5',
+      shortName: 'Claude Sonnet 5.5',
+      inputRate: 2.00,
+      cachedInputRate: 0.10,
+      outputRate: 10.00,
+      contextLimit: 200000,
+      badge: 'Coding SOTA',
+      category: 'anthropic',
+      isThinking: true
+    },
+    'claude-opus-5-5': {
+      name: 'Claude Opus 5.5',
+      shortName: 'Claude Opus 5.5',
+      inputRate: 4.00,
+      cachedInputRate: 0.20,
+      outputRate: 20.00,
+      contextLimit: 200000,
+      badge: 'Agentic SOTA',
+      category: 'anthropic',
+      isThinking: true
+    },
+    'claude-haiku-5-5': {
+      name: 'Claude Haiku 5.5',
+      shortName: 'Claude Haiku 5.5',
+      inputRate: 0.10,
+      cachedInputRate: 0.01,
+      outputRate: 0.50,
+      contextLimit: 200000,
+      badge: 'Ultra Fast',
+      category: 'anthropic',
+      isThinking: false
+    },
+    'claude-fable-5-2': {
+      name: 'Claude Fable 5.2',
+      shortName: 'Claude Fable 5.2',
+      inputRate: 8.00,
+      cachedInputRate: 0.20,
+      outputRate: 40.00,
+      contextLimit: 200000,
+      badge: 'Deep Reason',
+      category: 'anthropic',
+      isThinking: true
+    },
     'claude-sonnet-4-6': {
-      name: 'Claude Sonnet 4.6 (Thinking)',
+      name: 'Claude Sonnet 4.6',
       shortName: 'Claude Sonnet 4.6',
       inputRate: 3.00,
+      cachedInputRate: 0.30,
       outputRate: 15.00,
       contextLimit: 200000,
-      badge: 'Thinking SOTA',
+      badge: 'Thinking',
       category: 'anthropic',
       isThinking: true
     },
     'claude-opus-4-6': {
-      name: 'Claude Opus 4.6 (Thinking)',
+      name: 'Claude Opus 4.6',
       shortName: 'Claude Opus 4.6',
-      inputRate: 15.00,
-      outputRate: 75.00,
+      inputRate: 5.00,
+      cachedInputRate: 0.50,
+      outputRate: 25.00,
       contextLimit: 200000,
-      badge: 'Frontier Reasoning',
+      badge: 'Frontier Think',
       category: 'anthropic',
       isThinking: true
     },
-    'claude-haiku-4-6': {
-      name: 'Claude Haiku 4.6 (Fast Tier)',
-      shortName: 'Claude Haiku 4.6',
-      inputRate: 0.80,
-      outputRate: 4.00,
-      contextLimit: 200000,
-      badge: 'Fast Intelligence',
-      category: 'anthropic',
+
+    // ⚡ OpenAI GPT-6, GPT-5, o-Series & GPT-OSS
+    'gpt-6-2-astra': {
+      name: 'OpenAI GPT-6.2 Astra',
+      shortName: 'GPT-6.2 Astra',
+      inputRate: 10.00,
+      cachedInputRate: 1.00,
+      outputRate: 50.00,
+      contextLimit: 400000,
+      badge: 'GPT-6 Flagship',
+      category: 'openai',
+      isThinking: true
+    },
+    'gpt-6-1-sol': {
+      name: 'OpenAI GPT-6.1 Sol',
+      shortName: 'GPT-6.1 Sol',
+      inputRate: 2.00,
+      cachedInputRate: 0.10,
+      outputRate: 10.00,
+      contextLimit: 256000,
+      badge: 'Balanced SOTA',
+      category: 'openai',
+      isThinking: true
+    },
+    'gpt-6-luna': {
+      name: 'OpenAI GPT-6 Luna',
+      shortName: 'GPT-6 Luna',
+      inputRate: 0.10,
+      cachedInputRate: 0.01,
+      outputRate: 0.50,
+      contextLimit: 128000,
+      badge: 'Budget Speed',
+      category: 'openai',
       isThinking: false
     },
-
-    // ⚡ OpenAI & GPT-OSS Ecosystem
+    'gpt-5': {
+      name: 'OpenAI GPT-5',
+      shortName: 'GPT-5',
+      inputRate: 1.25,
+      cachedInputRate: 0.125,
+      outputRate: 10.00,
+      contextLimit: 256000,
+      badge: 'Agentic Core',
+      category: 'openai',
+      isThinking: true
+    },
     'o3': {
-      name: 'OpenAI o3 (Reasoning Flagship)',
+      name: 'OpenAI o3',
       shortName: 'OpenAI o3',
-      inputRate: 10.00,
-      outputRate: 40.00,
+      inputRate: 2.00,
+      cachedInputRate: 0.50,
+      outputRate: 8.00,
       contextLimit: 200000,
-      badge: 'CoT Flagship',
+      badge: 'CoT Reasoning',
       category: 'openai',
       isThinking: true
     },
     'o3-mini': {
-      name: 'OpenAI o3-mini (STEM Reasoning)',
+      name: 'OpenAI o3-mini',
       shortName: 'o3-mini',
-      inputRate: 1.10,
-      outputRate: 4.40,
+      inputRate: 0.66,
+      cachedInputRate: 0.16,
+      outputRate: 2.64,
       contextLimit: 200000,
-      badge: 'Fast Reasoning',
-      category: 'openai',
-      isThinking: true
-    },
-    'o1': {
-      name: 'OpenAI o1 (Frontier Reasoning)',
-      shortName: 'OpenAI o1',
-      inputRate: 15.00,
-      outputRate: 60.00,
-      contextLimit: 200000,
-      badge: 'Frontier Reasoning',
+      badge: 'STEM Reason',
       category: 'openai',
       isThinking: true
     },
     'gpt-oss-120b': {
-      name: 'GPT-OSS 120B (Medium MoE)',
+      name: 'GPT-OSS 120B (MoE)',
       shortName: 'GPT-OSS 120B',
       inputRate: 0.20,
+      cachedInputRate: 0.05,
       outputRate: 0.60,
       contextLimit: 128000,
-      badge: 'Open Weights MoE',
-      category: 'openai',
-      isThinking: false
-    },
-    'gpt-oss-20b': {
-      name: 'GPT-OSS 20B (Local MoE)',
-      shortName: 'GPT-OSS 20B',
-      inputRate: 0.08,
-      outputRate: 0.24,
-      contextLimit: 128000,
-      badge: 'Single GPU MoE',
-      category: 'openai',
-      isThinking: false
-    },
-    'gpt-4o': {
-      name: 'OpenAI GPT-4o (Omni)',
-      shortName: 'GPT-4o',
-      inputRate: 2.50,
-      outputRate: 10.00,
-      contextLimit: 128000,
-      badge: 'Omni Flagship',
+      badge: 'Open Weights',
       category: 'openai',
       isThinking: false
     },
 
-    // 🚀 DeepSeek Open Weights
-    'deepseek-r1': {
-      name: 'DeepSeek R1 (Reasoning)',
-      shortName: 'DeepSeek R1',
-      inputRate: 0.55,
-      outputRate: 2.19,
+    // 🚀 DeepSeek V4 & R1
+    'deepseek-v4-pro': {
+      name: 'DeepSeek V4-Pro',
+      shortName: 'DeepSeek V4-Pro',
+      inputRate: 0.66,
+      cachedInputRate: 0.022,
+      outputRate: 1.98,
       contextLimit: 128000,
-      badge: 'Reasoning SOTA',
+      badge: 'Off-Peak Pro',
       category: 'deepseek',
       isThinking: true
     },
-    'deepseek-v3': {
-      name: 'DeepSeek V3 (MoE Value)',
-      shortName: 'DeepSeek V3',
-      inputRate: 0.14,
-      outputRate: 0.28,
+    'deepseek-v4-1-flash': {
+      name: 'DeepSeek V4.1-Flash',
+      shortName: 'V4.1-Flash',
+      inputRate: 0.15,
+      cachedInputRate: 0.003,
+      outputRate: 0.60,
       contextLimit: 128000,
-      badge: 'MoE Value King',
+      badge: 'Flash MoE',
       category: 'deepseek',
+      isThinking: false
+    },
+    'deepseek-r1': {
+      name: 'DeepSeek R1',
+      shortName: 'DeepSeek R1',
+      inputRate: 0.70,
+      cachedInputRate: 0.14,
+      outputRate: 2.40,
+      contextLimit: 128000,
+      badge: 'Open Reason',
+      category: 'deepseek',
+      isThinking: true
+    },
+
+    // 🟣 Alibaba Qwen 3.x
+    'qwen-3-8-max': {
+      name: 'Qwen 3.8-Max',
+      shortName: 'Qwen 3.8-Max',
+      inputRate: 1.65,
+      cachedInputRate: 0.25,
+      outputRate: 4.95,
+      contextLimit: 1000000,
+      badge: 'Qwen Flagship',
+      category: 'qwen',
+      isThinking: true
+    },
+    'qwen-3-5-plus': {
+      name: 'Qwen 3.5 Plus',
+      shortName: 'Qwen 3.5 Plus',
+      inputRate: 0.40,
+      cachedInputRate: 0.05,
+      outputRate: 2.40,
+      contextLimit: 1000000,
+      badge: '1M Context',
+      category: 'qwen',
+      isThinking: false
+    },
+    'qwen-flash': {
+      name: 'Qwen Flash',
+      shortName: 'Qwen Flash',
+      inputRate: 0.10,
+      cachedInputRate: 0.01,
+      outputRate: 0.40,
+      contextLimit: 1000000,
+      badge: 'Ultra Budget',
+      category: 'qwen',
       isThinking: false
     }
   };
@@ -198,7 +334,7 @@ Shipping Address: 400 Silicon Parkway, Suite 800, Austin, TX 78701`,
   const metricWords = document.getElementById('metricWords');
   const metricLines = document.getElementById('metricLines');
   const metricSingleCost = document.getElementById('metricSingleCost');
-  const metricInputRate = document.getElementById('metricInputRate');
+  const metricRateBreakdown = document.getElementById('metricRateBreakdown');
   const metric100kCost = document.getElementById('metric100kCost');
   const metricAnnualCost = document.getElementById('metricAnnualCost');
   const tokenPillCount = document.getElementById('tokenPillCount');
@@ -230,10 +366,13 @@ Shipping Address: 400 Silicon Parkway, Suite 800, Austin, TX 78701`,
   const diffOriginalText = document.getElementById('diffOriginalText');
   const diffOptimizedText = document.getElementById('diffOptimizedText');
   const btnApplyOptimized = document.getElementById('btnApplyOptimized');
+  const btnAiDeepCompress = document.getElementById('btnAiDeepCompress');
   const btnCopyOptimized = document.getElementById('btnCopyOptimized');
 
   // Cost Matrix & Simulator
   const costTableBody = document.getElementById('costTableBody');
+  const outputTokensInput = document.getElementById('outputTokensInput');
+  const cacheHitToggle = document.getElementById('cacheHitToggle');
   const simSlider = document.getElementById('simSlider');
   const simVolumeVal = document.getElementById('simVolumeVal');
   const contextBar = document.getElementById('contextBar');
@@ -248,6 +387,8 @@ Shipping Address: 400 Silicon Parkway, Suite 800, Austin, TX 78701`,
   let optimizedPromptText = '';
   let activeTab = 'editor';
   let simulatedVolume = 100000;
+  let expectedOutputTokens = 250;
+  let useCachedInput = false;
   let activeCategoryFilter = 'all';
 
   // BPE Subword Tokenizer Simulation Engine
@@ -343,16 +484,17 @@ Shipping Address: 400 Silicon Parkway, Suite 800, Austin, TX 78701`,
     metricRatio.textContent = `~${charsPerToken} chars/token`;
     tokenPillCount.textContent = tokenCount.toLocaleString();
 
-    // Selected Model Cost Calculation
+    // Selected Model Cost Calculation (Input + Cached Discount + Output)
     const selectedModelKey = primaryModelSelect.value;
-    const model = MODEL_CATALOG[selectedModelKey];
+    const model = MODEL_CATALOG[selectedModelKey] || MODEL_CATALOG['gemini-4-hydrogen'];
+    const effectiveInputRate = useCachedInput ? (model.cachedInputRate ?? model.inputRate) : model.inputRate;
     statModelName.textContent = model.shortName;
-    metricInputRate.textContent = model.inputRate.toFixed(2);
+    metricRateBreakdown.textContent = `${useCachedInput ? 'Cache' : 'In'}: $${effectiveInputRate.toFixed(3)} | Out: $${model.outputRate.toFixed(2)} / 1M`;
 
-    const singleCallCost = (tokenCount / 1000000) * model.inputRate;
+    const singleCallCost = ((tokenCount / 1000000) * effectiveInputRate) + ((expectedOutputTokens / 1000000) * model.outputRate);
     metricSingleCost.textContent = singleCallCost.toFixed(6);
 
-    const costPerVolume = (tokenCount / 1000000) * model.inputRate * simulatedVolume;
+    const costPerVolume = singleCallCost * simulatedVolume;
     metric100kCost.textContent = costPerVolume >= 1000 ? costPerVolume.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : costPerVolume.toFixed(2);
     metricAnnualCost.textContent = (costPerVolume * 12).toFixed(2);
 
@@ -434,7 +576,8 @@ Shipping Address: 400 Silicon Parkway, Suite 800, Austin, TX 78701`,
       if (activeCategoryFilter === 'thinking' && !m.isThinking) return;
       if (activeCategoryFilter !== 'all' && activeCategoryFilter !== 'thinking' && m.category !== activeCategoryFilter) return;
 
-      const costPerCall = (tokenCount / 1000000) * m.inputRate;
+      const effectiveIn = useCachedInput ? (m.cachedInputRate ?? m.inputRate) : m.inputRate;
+      const costPerCall = ((tokenCount / 1000000) * effectiveIn) + ((expectedOutputTokens / 1000000) * m.outputRate);
       const costPerVol = costPerCall * volume;
       const isSelected = key === selectedKey;
 
@@ -480,7 +623,8 @@ Shipping Address: 400 Silicon Parkway, Suite 800, Austin, TX 78701`,
       const savingsPct = Math.round((savedTokens / originalTokens) * 100);
       compSavingsPct.textContent = `${savingsPct}%`;
 
-      const dollarsSaved = (savedTokens / 1000000) * model.inputRate * simulatedVolume;
+      const effectiveIn = useCachedInput ? (model.cachedInputRate ?? model.inputRate) : model.inputRate;
+      const dollarsSaved = (savedTokens / 1000000) * effectiveIn * simulatedVolume;
       compDollarsSaved.textContent = `$${dollarsSaved.toFixed(2)}`;
     } else {
       compSavingsPct.textContent = '0%';
@@ -490,15 +634,17 @@ Shipping Address: 400 Silicon Parkway, Suite 800, Austin, TX 78701`,
 
   // Render Cost Audit Markdown
   function renderAuditSnippet(tokens, chars, words, modelKey) {
-    const m = MODEL_CATALOG[modelKey];
-    const singleCost = (tokens / 1000000) * m.inputRate;
+    const m = MODEL_CATALOG[modelKey] || MODEL_CATALOG['gemini-4-hydrogen'];
+    const effectiveIn = useCachedInput ? (m.cachedInputRate ?? m.inputRate) : m.inputRate;
+    const singleCost = ((tokens / 1000000) * effectiveIn) + ((expectedOutputTokens / 1000000) * m.outputRate);
     const monthlyCost = singleCost * simulatedVolume;
     const annualCost = monthlyCost * 12;
 
-    const report = 
+    const report =
 `### TokenBudget AI — Cost Audit
-- Model: ${m.name} (${(m.contextLimit / 1000)}k Context)
-- Total Tokens: ${tokens.toLocaleString()} (${chars.toLocaleString()} chars, ${words.toLocaleString()} words)
+- Model: ${m.name} (${(m.contextLimit / 1000).toLocaleString()}k Context)
+- Input: ${tokens.toLocaleString()} tok (${useCachedInput ? 'Cached' : 'Standard'} $${effectiveIn.toFixed(3)}/1M)
+- Expected Output: ${expectedOutputTokens.toLocaleString()} tok ($${m.outputRate.toFixed(2)}/1M)
 - Cost / Call: $${singleCost.toFixed(6)}
 - Monthly (${simulatedVolume.toLocaleString()} calls): $${monthlyCost.toFixed(2)}
 - Projected Annual Spend: $${annualCost.toFixed(2)}`;
@@ -581,6 +727,73 @@ Shipping Address: 400 Silicon Parkway, Suite 800, Austin, TX 78701`,
     simulatedVolume = parseInt(e.target.value, 10);
     simVolumeVal.textContent = simulatedVolume.toLocaleString();
     updateAll();
+  });
+
+  outputTokensInput.addEventListener('input', (e) => {
+    expectedOutputTokens = Math.max(0, parseInt(e.target.value, 10) || 0);
+    updateAll();
+  });
+
+  cacheHitToggle.addEventListener('change', (e) => {
+    useCachedInput = e.target.checked;
+    updateAll();
+  });
+
+  btnAiDeepCompress.addEventListener('click', async () => {
+    const raw = promptInput.value.trim();
+    if (!raw) return;
+    let cfg = {};
+    try { cfg = JSON.parse(localStorage.getItem('kg_ai_config') || '{}'); } catch {}
+    if (!cfg.provider || cfg.provider === 'offline') {
+      alert('Shared AI Engine is in Offline Mode. Open Krishna.OS -> AI Engine to enable local Ollama or a Cloud API key.');
+      return;
+    }
+    btnAiDeepCompress.textContent = 'Compressing via AI...';
+    btnAiDeepCompress.disabled = true;
+    const sysPrompt = `Rewrite this prompt to be ultra-token-efficient (cut 30-45% tokens) while keeping 100% of constraints, output format rules, and schemas intact. Output ONLY the compressed prompt:\n\n${raw}`;
+    try {
+      let out = '';
+      if (cfg.provider === 'ollama') {
+        const res = await fetch(cfg.endpoint || 'http://localhost:11434/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ model: cfg.model || 'qwen2.5:3b', messages: [{ role: 'user', content: sysPrompt }], stream: false })
+        });
+        const d = await res.json();
+        out = d.message?.content || d.response || '';
+      } else if (cfg.provider === 'gemini') {
+        const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${cfg.model || 'gemini-4-hydrogen'}:generateContent?key=${cfg.apiKey}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ contents: [{ parts: [{ text: sysPrompt }] }] })
+        });
+        const d = await res.json();
+        out = d.candidates?.[0]?.content?.parts?.[0]?.text || '';
+      } else if (cfg.provider === 'groq' || cfg.provider === 'openai') {
+        const res = await fetch(cfg.endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${cfg.apiKey}` },
+          body: JSON.stringify({ model: cfg.model, messages: [{ role: 'user', content: sysPrompt }] })
+        });
+        const d = await res.json();
+        out = d.choices?.[0]?.message?.content || '';
+      }
+      if (out.trim()) {
+        optimizedPromptText = out.trim();
+        const origTok = currentTokens.length;
+        const optTok = tokenizeText(optimizedPromptText).length;
+        compOptimizedTokens.textContent = optTok.toLocaleString();
+        tagOptimizedTokens.textContent = `${optTok} tok`;
+        diffOptimizedText.textContent = optimizedPromptText;
+        const saved = Math.max(0, origTok - optTok);
+        compSavingsPct.textContent = origTok > 0 ? `${Math.round((saved / origTok) * 100)}%` : '0%';
+      }
+    } catch (err) {
+      alert(`AI Compress error: ${err.message}`);
+    } finally {
+      btnAiDeepCompress.textContent = 'AI Rewrite Compress ✨';
+      btnAiDeepCompress.disabled = false;
+    }
   });
 
   btnCopyAudit.addEventListener('click', () => {

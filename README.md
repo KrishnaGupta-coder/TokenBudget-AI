@@ -3,7 +3,7 @@
 > **Real-Time Multi-Model LLM Tokenizer, Dynamic Cost Matrix & Prompt Compressor.**
 
 [![Live App](https://img.shields.io/badge/Live_App-TokenBudget_AI-00e5ff?style=for-the-badge&logo=google-chrome&logoColor=black)](https://krishnagupta-coder.github.io/TokenBudget-AI/)
-[![Models Supported](https://img.shields.io/badge/Models-GPT--4o_|_Claude_3.5_|_Gemini_|_DeepSeek-8b5cf6?style=for-the-badge)](https://krishnagupta-coder.github.io/TokenBudget-AI/)
+[![Models Supported](https://img.shields.io/badge/Models-GPT--6_|_Claude_5.5_|_Gemini_4_|_DeepSeek_V4_|_Qwen_3.8-8b5cf6?style=for-the-badge)](https://krishnagupta-coder.github.io/TokenBudget-AI/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-10b981?style=for-the-badge)](LICENSE)
 [![GitHub Pages](https://img.shields.io/badge/Deployed-GitHub_Pages-22c55e?style=for-the-badge&logo=github)](https://krishnagupta-coder.github.io/TokenBudget-AI/)
 
@@ -51,21 +51,22 @@ graph TD
 
 ## 🏷️ Multi-Model Pricing Comparison
 
-| Foundation Model | Ecosystem | Category | Context Window | Input Rate (per 1M) | Output Rate (per 1M) |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **Gemini 3.8 Flash** | Google | High-Velocity Multimodal | 1,048,576 | $0.10 | $0.40 |
-| **Gemini 3.8 Pro** | Google | Extended 2M Reasoning | 2,097,152 | $1.25 | $5.00 |
-| **Claude Sonnet 4.6** | Anthropic | Thinking & Coding SOTA | 200,000 | $3.00 | $15.00 |
-| **Claude Opus 4.6** | Anthropic | Frontier Deep Reasoning | 200,000 | $15.00 | $75.00 |
-| **Claude Haiku 4.6** | Anthropic | Fast Tier Intelligence | 200,000 | $0.80 | $4.00 |
-| **OpenAI o3** | OpenAI | Flagship CoT Reasoning | 200,000 | $10.00 | $40.00 |
-| **OpenAI o3-mini** | OpenAI | Fast STEM Reasoning | 200,000 | $1.10 | $4.40 |
-| **OpenAI o1** | OpenAI | Frontier Reasoning | 200,000 | $15.00 | $60.00 |
-| **GPT-OSS 120B** | OpenAI / OSS | Open Weights Medium MoE | 128,000 | $0.20 | $0.60 |
-| **GPT-OSS 20B** | OpenAI / OSS | Local Single-GPU MoE | 128,000 | $0.08 | $0.24 |
-| **GPT-4o (Omni)** | OpenAI | Multimodal Omni Flagship | 128,000 | $2.50 | $10.00 |
-| **DeepSeek R1** | DeepSeek | Open Reasoning SOTA | 128,000 | $0.55 | $2.19 |
-| **DeepSeek V3** | DeepSeek | MoE Architecture King | 128,000 | $0.14 | $0.28 |
+| Foundation Model | Ecosystem | Category | Context Window | Input / Cache / Output (per 1M) |
+| :--- | :--- | :--- | :--- | :--- |
+| **Gemini 4 Hydrogen** | Google | Speed / Reasoning Tier | 1,048,576 | $1.50 / $0.075 / $7.50 |
+| **Gemini 4 Carbon** | Google | Flagship Reasoning | 2,097,152 | $3.00 / $0.15 / $15.00 |
+| **Gemini 3.8 Flash** | Google | Agentic Speed | 1,048,576 | $0.75 / $0.075 / $3.75 |
+| **Claude Sonnet 5.5** | Anthropic | Coding & Balanced SOTA | 200,000 | $2.00 / $0.10 / $10.00 |
+| **Claude Opus 5.5** | Anthropic | Agentic Knowledge SOTA | 200,000 | $4.00 / $0.20 / $20.00 |
+| **Claude Haiku 5.5** | Anthropic | Ultra-Fast Tier | 200,000 | $0.10 / $0.01 / $0.50 |
+| **Claude Fable 5.2** | Anthropic | Deep Reasoning | 200,000 | $8.00 / $0.20 / $40.00 |
+| **GPT-6.2 Astra** | OpenAI | Frontier Flagship | 400,000 | $10.00 / $1.00 / $50.00 |
+| **GPT-6.1 Sol** | OpenAI | General Flagship | 256,000 | $2.00 / $0.10 / $10.00 |
+| **GPT-6 Luna** | OpenAI | Fast & Budget | 128,000 | $0.10 / $0.01 / $0.50 |
+| **OpenAI o3 / o3-mini** | OpenAI | Reasoning Series | 200,000 | $2.00 ($0.66 mini) / $8.00 |
+| **DeepSeek V4-Pro** | DeepSeek | Off-Peak Reasoning | 128,000 | $0.66 / $0.022 / $1.98 |
+| **DeepSeek V4.1-Flash** | DeepSeek | Flash MoE | 128,000 | $0.15 / $0.003 / $0.60 |
+| **Qwen 3.8-Max** | Alibaba Qwen | Flagship 1M | 1,000,000 | $1.65 / $0.25 / $4.95 |
 
 ---
 

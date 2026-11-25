@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TokenBudget AI — Real-Time Multi-Model LLM Tokenizer & Cost Optimizer</title>
-  <meta name="description" content="In-browser BPE tokenizer, real-time multi-model LLM pricing calculator (GPT-4o, Claude 3.5, Gemini 1.5, DeepSeek), context window gauges, and 1-click prompt compressor.">
+  <meta name="description" content="In-browser BPE tokenizer, real-time multi-model LLM pricing calculator (GPT-6, Claude 5.5, Gemini 4, DeepSeek V4, Qwen 3.8) with input/output/cache costing and 1-click prompt compression.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -30,29 +30,41 @@
         <div class="model-selector-pill">
           <label for="primaryModelSelect">Model Matrix:</label>
           <select id="primaryModelSelect">
-            <optgroup label="🌟 Google Ecosystem">
-              <option value="gemini-3-8-flash" selected>Gemini 3.8 Flash (Medium)</option>
-              <option value="gemini-3-8-pro">Gemini 3.8 Pro (Extended)</option>
+            <optgroup label="🌟 Google Gemini 4 & 3.x">
+              <option value="gemini-4-hydrogen" selected>Gemini 4 Hydrogen (Speed/Reason)</option>
+              <option value="gemini-4-carbon">Gemini 4 Carbon (Flagship Reasoning)</option>
+              <option value="gemini-4-neon">Gemini 4 Neon (Advanced Reasoning)</option>
+              <option value="gemini-3-8-flash">Gemini 3.8 Flash (Agentic Speed)</option>
+              <option value="gemini-3-5-flash-lite">Gemini 3.5 Flash-Lite</option>
             </optgroup>
-            <optgroup label="🧠 Anthropic Thinking Ecosystem">
+            <optgroup label="🧠 Anthropic Claude 5.x & 4.6">
+              <option value="claude-sonnet-5-5">Claude Sonnet 5.5 (Coding SOTA)</option>
+              <option value="claude-opus-5-5">Claude Opus 5.5 (Agentic Flagship)</option>
+              <option value="claude-haiku-5-5">Claude Haiku 5.5 (Ultra-Fast)</option>
+              <option value="claude-fable-5-2">Claude Fable 5.2 (Deep Reasoning)</option>
               <option value="claude-sonnet-4-6">Claude Sonnet 4.6 (Thinking)</option>
               <option value="claude-opus-4-6">Claude Opus 4.6 (Thinking)</option>
-              <option value="claude-haiku-4-6">Claude Haiku 4.6 (Fast)</option>
             </optgroup>
-            <optgroup label="⚡ OpenAI & GPT-OSS Ecosystem">
-              <option value="o3">OpenAI o3 (Reasoning Flagship)</option>
-              <option value="o3-mini">OpenAI o3-mini (STEM Reasoning)</option>
-              <option value="o1">OpenAI o1 (Frontier Reasoning)</option>
-              <option value="gpt-oss-120b">GPT-OSS 120B (Medium MoE)</option>
-              <option value="gpt-oss-20b">GPT-OSS 20B (Local MoE)</option>
-              <option value="gpt-4o">OpenAI GPT-4o (Omni)</option>
+            <optgroup label="⚡ OpenAI GPT-6, GPT-5 & o-Series">
+              <option value="gpt-6-2-astra">GPT-6.2 Astra (Flagship)</option>
+              <option value="gpt-6-1-sol">GPT-6.1 Sol (General SOTA)</option>
+              <option value="gpt-6-luna">GPT-6 Luna (Fast / Budget)</option>
+              <option value="gpt-5">OpenAI GPT-5</option>
+              <option value="o3">OpenAI o3 (Reasoning)</option>
+              <option value="o3-mini">OpenAI o3-mini (STEM)</option>
+              <option value="gpt-oss-120b">GPT-OSS 120B (Open-Weight MoE)</option>
             </optgroup>
-            <optgroup label="🚀 DeepSeek Ecosystem">
-              <option value="deepseek-r1">DeepSeek R1 (Reasoning)</option>
-              <option value="deepseek-v3">DeepSeek V3 (MoE Architecture)</option>
+            <optgroup label="🚀 DeepSeek & Qwen">
+              <option value="deepseek-v4-pro">DeepSeek V4-Pro (Off-Peak)</option>
+              <option value="deepseek-v4-1-flash">DeepSeek V4.1-Flash</option>
+              <option value="deepseek-r1">DeepSeek R1 (Open Reasoning)</option>
+              <option value="qwen-3-8-max">Qwen 3.8-Max (1M Context)</option>
+              <option value="qwen-3-5-plus">Qwen 3.5 Plus</option>
+              <option value="qwen-flash">Qwen Flash</option>
             </optgroup>
           </select>
         </div>
+        <a href="https://krishnagupta-coder.github.io/" class="github-badge-btn">⚡ Krishna.OS</a>
         <a href="https://github.com/KrishnaGupta-coder/TokenBudget-AI" target="_blank" class="github-badge-btn">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
           Source Code
@@ -75,9 +87,9 @@
       </div>
 
       <div class="stat-card">
-        <span class="stat-label">Single Call Cost (<span id="statModelName">GPT-4o</span>)</span>
+        <span class="stat-label">Single Call Cost (<span id="statModelName">Gemini 4 Hydrogen</span>)</span>
         <div class="stat-val highlight-green">$<span id="metricSingleCost">0.000000</span></div>
-        <span class="stat-sub">Input: $<span id="metricInputRate">2.50</span> / 1M</span>
+        <span class="stat-sub" id="metricRateBreakdown">In: $1.50 | Out: $7.50 / 1M</span>
       </div>
 
       <div class="stat-card">
@@ -181,6 +193,7 @@
 
           <div class="compressor-actions">
             <button id="btnApplyOptimized" class="btn btn-primary">Apply to Editor</button>
+            <button id="btnAiDeepCompress" class="btn btn-secondary">AI Rewrite Compress ✨</button>
             <button id="btnCopyOptimized" class="btn btn-secondary">Copy Compressed Prompt</button>
           </div>
         </div>
@@ -196,11 +209,12 @@
 
         <div class="matrix-filter-bar">
           <button class="filter-pill active" data-filter="all">All</button>
-          <button class="filter-pill" data-filter="thinking">🧠 Thinking</button>
+          <button class="filter-pill" data-filter="thinking">🧠 Reasoning</button>
           <button class="filter-pill" data-filter="google">Google</button>
           <button class="filter-pill" data-filter="anthropic">Anthropic</button>
           <button class="filter-pill" data-filter="openai">OpenAI / OSS</button>
           <button class="filter-pill" data-filter="deepseek">DeepSeek</button>
+          <button class="filter-pill" data-filter="qwen">Qwen</button>
         </div>
 
         <div class="cost-table-wrapper">
@@ -210,7 +224,7 @@
                 <th>Model</th>
                 <th>Context</th>
                 <th>Cost / Call</th>
-                <th>Cost / 100k</th>
+                <th>Monthly</th>
               </tr>
             </thead>
             <tbody id="costTableBody">
@@ -219,8 +233,18 @@
           </table>
         </div>
 
-        <!-- Volume Simulator Slider -->
+        <!-- Volume & Output Simulator -->
         <div class="simulator-box">
+          <div class="sim-controls-row">
+            <label class="sim-inline">
+              <span>Output Tokens/Call:</span>
+              <input type="number" id="outputTokensInput" min="0" max="100000" step="50" value="250" class="sim-input">
+            </label>
+            <label class="cache-toggle">
+              <input type="checkbox" id="cacheHitToggle">
+              <span>Cached Input</span>
+            </label>
+          </div>
           <div class="sim-header">
             <span>Call Volume Simulator</span>
             <span class="sim-val"><b id="simVolumeVal">100,000</b> calls/mo</span>
